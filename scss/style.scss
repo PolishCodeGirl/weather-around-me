@@ -15,7 +15,9 @@ section {
         margin-top: 50px;
         height: 200px;
         border: 1px solid yellow;
-        border-radius: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
     }
     .temperature {
         margin-top: 15px;
