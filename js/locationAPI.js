@@ -17,8 +17,7 @@ function getCityName(pos){
      // function which gets JASON from Google Maps API 
      function loadCityNameByAjax() {
          $.ajax({
-             
-//                url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng=32.718207,-117.1595547&key=AIzaSyAFBTFTTnNeL9Ctas92Ih9STq4rcmlPtyI'
+//             url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng=40.7856656,-73.966853&key=AIzaSyAFBTFTTnNeL9Ctas92Ih9STq4rcmlPtyI'
             url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+ pos.lat + ',' + pos.lng + '&key=AIzaSyAFBTFTTnNeL9Ctas92Ih9STq4rcmlPtyI'
          }).done(function(response){
              insertCityName(response);

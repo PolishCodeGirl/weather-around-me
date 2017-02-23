@@ -21,9 +21,40 @@
               getWeatherConditions(pos);
               
               
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
+            //infoWindow.setPosition(pos);
+            //infoWindow.setContent('Location found.');
             map.setCenter(pos);
+              
+              // Place a draggable marker on the map
+              var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(pos.lat,pos.lng),
+                map: map,
+                draggable:true,
+                title:"Drag me!"
+            });
+              
+              // Move maker for another position
+              marker.addListener('click', function toggleBounce() {
+                  if (marker.getAnimation() !== null) {
+                      marker.setAnimation(null);
+                } else {
+                    marker.setAnimation(google.maps.Animation.BOUNCE);
+                }
+              }); 
+              
+              
+              // Get new coordinates (latitude and longitude) after mooving marker
+              google.maps.event.addListener(marker, 'dragend', function (event) {
+                  var newPos = {
+                      lat: this.getPosition().lat(),
+                      lng: this.getPosition().lng()
+                  };
+                  
+                  // set new coordinates to function responsible for getting and showing location name and weather conditions
+                  getCityName(newPos);
+                  getWeatherConditions(newPos);
+              });
+              
           }, function() {
             handleLocationError(true, infoWindow, map.getCenter());
           });
