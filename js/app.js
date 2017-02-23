@@ -20,9 +20,17 @@ $(function() {
         });
         
         back.on('click', function(){
-            longWeather.fadeOut(1000, function(){
-                shortWeather.fadeIn(1000);
-            });
+            if (longWeather.is(':visible')) {
+                longWeather.fadeOut(1000, function(){
+                    shortWeather.fadeIn(1000);
+                });
+            } 
+            else if (googleMap.is(':visible')) {
+                googleMap.fadeOut(1000, function(){
+                    shortWeather.fadeIn(1000);
+                });
+            }
+            
             //longWeather.hide();
             console.log("działa");
         });
