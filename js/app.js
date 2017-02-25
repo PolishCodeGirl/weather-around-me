@@ -3,14 +3,16 @@
 //});
 
 $(function() {
+    var more = $(".showMore");
+    var back = $(".showLess");
+    var mapBtn = $(".mapBtn");
+    var shortWeather = $(".shortWeather");
+    var longWeather = $(".longWeather");
+    var googleMap = $(".googleMap");
+    
+    
     function detailWeather() {
-        var more = $(".showMore");
-        var back = $(".showLess");
-        var mapBtn = $(".mapBtn");
-        var shortWeather = $(".shortWeather");
-        var longWeather = $(".longWeather");
-        var googleMap = $(".googleMap");
-        
+              
         more.on('click', function(){
             shortWeather.fadeOut(function(){
                 longWeather.fadeIn();
@@ -54,6 +56,36 @@ $(function() {
         });
     }
     
+    
+    //?????? POPRAWIC
+    function showMapOnTablet() {
+        if (window.matchMedia("(min-width: 768px)").matches) {
+            mapBtn.on('click', function(){
+                longWeather.fadeOut(function(){
+                    googleMap.fadeIn();
+                    var map = document.getElementById('map');
+                    google.maps.event.trigger(map, 'resize');
+                });
+            });
+            
+            back.on('click', function(){
+                googleMap.fadeOut(function(){
+                    longWeather.fadeIn();
+                });
+            });
+        }
+        
+//        tablet.addListener(function(event){
+//            if(event.matches){
+//                googleMap.toggleClass("hidden");
+//            }
+//            else {
+//                googleMap.addClass("show");
+//            }
+//        });
+    }
+    
     detailWeather();
+    showMapOnTablet();
     
 });

@@ -10,15 +10,16 @@
     </head>
     <body>
         <header class="container">
-            <h1 class="page-header text-center"> LOGO
-            </h1>
+            <h2 class="page-header text-center"> <em>WEATHER</em>
+            </h2>
         </header>
         
+        <article class="weatherArticle">
         <!-- View for first page with short weather version -->
         <section class="container shortWeather">
             <div class="row">
-                <div class="col-xs-2 col-sm-2"></div>
-                <div class="col-xs-8 col-sm-8">
+                <div class="col-xs-2 col-sm-2 col-lg-3"></div>
+                <div class="col-xs-8 col-sm-8 col-lg-6">
                     <div class="mainPicture"></div>
                     <p class="text-center temperature"><span class="tempValue">18</span> &deg;C</p>
                     <p class="text-center cityName">Mozambik</p>
@@ -26,15 +27,15 @@
                         MORE <span class="glyphicon glyphicon-chevron-down"></span>
                     </button>
                 </div>
-                <div class="col-xs-2 col-sm-2"></div>
+                <div class="col-xs-2 col-sm-2 col-lg-3"></div>
             </div>
         </section>
         
 <!--         View for detailed weather -->
         <section class="container longWeather">
             <div class="row">
-                <div class="col-xs-1 col-sm-2"></div>
-                <div class="col-xs-10 col-sm-8">
+                <div class="col-xs-1 col-sm-2 col-lg-2"></div>
+                <div class="col-xs-10 col-sm-8 col-lg-8">
                     <p class="text-center cityName">Mozambik</p>
                     <div class="detailedWeather">
                         <table class="table-striped table-hover">
@@ -68,15 +69,18 @@
                         BACK <span class="glyphicon glyphicon-chevron-up"></span>
                     </button>
                 </div>
-                <div class="col-xs-1 col-sm-2"></div>
+                <div class="col-xs-1 col-sm-2 col-lg-2"></div>
             </div>
         </section>
-        
+        </article>
+            
+        <article class="mapArticle">
         <!-- View for map -->
         <section class="container googleMap">
             <div class="row">
                 <div class="col-xs-1 col-sm-1"></div>
                 <div class="col-xs-10 col-sm-10">
+<!--                    <input id="pac-input" class="controls" type="text" placeholder="Search Box">-->
                     <div id="map"></div>
                     <button type="button" class="btn btn-primary btn-lg center-block showLess">
                         BACK <span class="glyphicon glyphicon-chevron-up"></span>
@@ -85,11 +89,14 @@
                 <div class="col-xs-1 col-sm-1"></div>
             </div>
         </section>
+        </article>
         
-        <footer class="container">
-            <div class="btn-group btn-group-lg" role="group">
-                <button type="button" class="btn btn-default"> FORECAST</button>
-                <button type="button" class="btn btn-default mapBtn"> MAP <span class="glyphicon glyphicon-globe"></span></button>
+        <footer class="container navbar-fixed-bottom">
+            <div class="text-center">
+                <div class="btn-group btn-group-lg" role="group">
+                    <button type="button" class="btn btn-default btnFooter"> FORECAST</button>
+                    <button type="button" class="btn btn-default mapBtn btnFooter"> MAP <span class="glyphicon glyphicon-globe"></span></button>
+                </div>
             </div>
         </footer>
         
@@ -101,6 +108,7 @@
         <script src="js/weatherAPI.js"></script>
         <script src="js/maps.js"></script>
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFBTFTTnNeL9Ctas92Ih9STq4rcmlPtyI&callback=initMap"></script>
+<!--        script dla search_box, dokleić ten element &libraries=places do ścieżki powyżej -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </body>

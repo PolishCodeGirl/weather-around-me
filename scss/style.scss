@@ -1,31 +1,49 @@
 body {
-    background-color: #7fd3ff;
+    //background-color: #7fd3ff;
+    background-image: url('../images/sky.png');
 }
 
 header, footer {
     height: 10vh;
 }
 
-section {
-    height: 80vh;
+button {
+    &.btnFooter {
+        width: 140px;
+    }
+}
+
+header {
+    .page-header {
+        margin: 10px 0 0 0;
+        color: #4b3a55;
+        &::first-letter {
+            font-size: 45px;
+        }
+        
+    }
 }
 
 section {
+    height: 75vh;
     .mainPicture {
         margin-top: 50px;
-        height: 200px;
-        border: 1px solid yellow;
+        height: 26vh;
+        //border: 1px solid yellow;
         background-repeat: no-repeat;
         background-position: center;
         background-size: 100%;
     }
     .temperature {
-        margin-top: 15px;
+        //margin-top: 15px;
         font-size: 4em;
     }
     .cityName {
         margin-top: 15px;
-        font-size: 4em;
+        font-size: 3em;
+    }
+    .showLess {
+        margin-top: 10px;
     }
 }
 
@@ -34,12 +52,12 @@ section {
         display: none;
     }
     .detailedWeather {
-        height: 400px;
+        height: 55vh;//350px; // POPRAWIC na vh, żeby dopasowywało się do odbiornika
         border: 1px solid green;
         table {
             width: 100%;
             height: 100%;
-            font-size: 1.5em;
+            font-size: 1.3em;
         }
     }
     &.googleMap {
@@ -47,23 +65,19 @@ section {
     }
     #map {
         margin-top: 25px;
-        height: 450px; // POPRAWIC na vh, żeby dopasowywało się do odbiornika
-        border: 1px solid green;
+        height: 60vh; // POPRAWIC na vh, żeby dopasowywało się do odbiornika
+        //border: 1px solid green;
     }
 }
 
 @media (min-width: 768px) {
-    .shortWeather {
-        
-    }
     section {
         &.shortWeather {
-            height: 30vh;
-            background-color: palevioletred;
+            height: 35vh;
             .mainPicture {
-                margin-top: 20px;
-                height: 100px;
-                background-size: 50%;
+                //margin-top: 30px;
+                height: 14vh;
+                background-size: 55%;
             }
             .temperature {
                 margin-top: 10px;
@@ -78,7 +92,7 @@ section {
             }
         }
         &.longWeather {
-            height: 50vh;
+            height: 40vh;
             display: block;
             .cityName {
                 display: none;
@@ -87,7 +101,75 @@ section {
                 display: none;
             }
         }
+        .detailedWeather {
+            height: 45vh;
+        }
+        &.googleMap {
+            #map {
+                height: 35vh;
+            }
+        }
     }
+}
+
+@media (min-width: 992px) {
+    article {
+        width: 45vw;
+        display: flex;
+    }
+    &.weatherArticle {
+        display: flex;
+        flex-direction: column;
+    }
+    section {
+        .row {
+            width: 45vw;
+        }
+        &.googleMap {
+            display: block;
+            button {
+                display: none;
+            }
+        }
+        &.shortWeather {
+            height: 35vh;
+            .mainPicture {
+                //margin-top: 30px;
+                height: 10vh;
+                background-size: 35%;
+            }
+            .temperature {
+                margin-top: 10px;
+                font-size: 2em;
+            }
+            .cityName {
+                margin-top: 10px;
+                font-size: 1.5em;
+            }
+            button {
+                display: none;
+            }
+        }
+        &.longWeather {
+            height: 35vh;
+            display: block;
+            .cityName {
+                display: none;
+            }
+            button {
+                display: none;
+            }
+        }
+        
+    }
+}
+
+.show {
+    display: block;
+}
+
+.hidden {
+    display: none;
 }
 
 //footer {
