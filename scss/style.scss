@@ -53,11 +53,12 @@ section {
     }
     .detailedWeather {
         height: 55vh;//350px; // POPRAWIC na vh, żeby dopasowywało się do odbiornika
-        border: 1px solid green;
+        //border: 1px solid green;
         table {
             width: 100%;
             height: 100%;
             font-size: 1.3em;
+            font-style: italic;
         }
     }
     &.googleMap {
@@ -66,6 +67,7 @@ section {
     #map {
         margin-top: 25px;
         height: 60vh; // POPRAWIC na vh, żeby dopasowywało się do odbiornika
+        width: 100%;
         //border: 1px solid green;
     }
 }

@@ -34,7 +34,6 @@ function getWeatherConditions(pos) {
     // function which gets JASON from OpenWeatherMap API               
     function loadWeatherByAjax() {
         $.ajax({
-//            url: 'http://api.openweathermap.org/data/2.5/weather?lat=40.7856656&lon=-73.966853&APPID=503930aad7641d49d14d96dd199c7c2d'
             url: 'http://api.openweathermap.org/data/2.5/weather?lat=' + pos.lat + '&lon=' + pos.lng + '&APPID=503930aad7641d49d14d96dd199c7c2d'
         }).done(function(response){
             insertWeather(response);
@@ -44,7 +43,21 @@ function getWeatherConditions(pos) {
             console.log('This method is --> fail');
         });
     }
+    
+    function loadForecastWeatherByAjax() {
+        $.ajax({
+            url: 'http://api.openweathermap.org/data/2.5/forecast?lat=' + pos.lat + '&lon=' + pos.lng + '&APPID=503930aad7641d49d14d96dd199c7c2d'
+        }).done(function(response){
+            //insertForecast(response);
+            console.log('Loaded');
+        }).fail(function(error){
+            console.log(error);
+            console.log('Failed');
+        });
+    }
               
-              // callback
-              loadWeatherByAjax();
+    
+    // callback
+    loadWeatherByAjax();
+    loadForecastWeatherByAjax();
 }
