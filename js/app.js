@@ -88,4 +88,15 @@ $(function() {
     detailWeather();
     showMapOnTablet();
     
+    function showMapOnDesktop() {
+        var weather = $('.weatherArticle');
+        var map = $('.mapArticle');
+        if (window.matchMedia("(min-width: 992px)").matches) {
+           weather.addClass('pull-left');
+            map.addClass('pull-right');
+        }
+    }
+    
+    showMapOnDesktop();
+    
 });

@@ -114,19 +114,37 @@ section {
 
 @media (min-width: 992px) {
     article {
-        width: 45vw;
-        display: flex;
-    }
-    &.weatherArticle {
-        display: flex;
-        flex-direction: column;
+        &.weatherArticle{
+            width: 35vw;
+            section {
+                .row {
+                    width: 35vw;
+                }
+                &.container {
+                    width: 35vw;
+                }
+            }
+        }
+        &.mapArticle {
+            width: 60vw;
+             section {
+                 .row {
+                    width: 60vw;
+                }
+                &.container {
+                    width: 60vw;
+                }
+            }
+        } 
     }
     section {
-        .row {
-            width: 45vw;
-        }
         &.googleMap {
             display: block;
+            #map {
+                width: 100%;
+                margin-top: 50px;
+                height: 75vh;
+            }
             button {
                 display: none;
             }
@@ -161,6 +179,9 @@ section {
             }
         }
         
+    }
+    footer {
+        display: none;
     }
 }
 
