@@ -6,13 +6,15 @@ $(function() {
     var more = $(".showMore");
     var back = $(".showLess");
     var mapBtn = $(".mapBtn");
+    var header = $('header');
     var shortWeather = $(".shortWeather");
     var longWeather = $(".longWeather");
     var googleMap = $(".googleMap");
     
     
     function detailWeather() {
-              
+        
+        // event for 'MORE' button      
         more.on('click', function(){
             shortWeather.fadeOut(function(){
                 longWeather.fadeIn();
@@ -21,22 +23,13 @@ $(function() {
             console.log("ja też działam :)");
         });
         
-        back.on('click', function(){
-            if (longWeather.is(':visible')) {
-                longWeather.fadeOut(1000, function(){
-                    shortWeather.fadeIn(1000);
-                });
-            } 
-            else if (googleMap.is(':visible')) {
-                googleMap.fadeOut(1000, function(){
-                    shortWeather.fadeIn(1000);
-                });
-            }
-            
-            //longWeather.hide();
-            console.log("działa");
-        });
+        // event for 'BACK' button
+        back.on('click', showFirstView);
         
+        // event for header
+        header.on('click', showFirstView);
+        
+        // event for 'MAP' button 
         mapBtn.on('click', function(){
             if(!shortWeather.is(':visible')){
                 longWeather.fadeOut(function(){
@@ -54,6 +47,21 @@ $(function() {
             }
             console.log("Mapa działa!!!");
         });
+        
+        
+        // function shows main view on mobile depends on which view is on the screen 
+        function showFirstView () {
+            if (longWeather.is(':visible')) {
+                longWeather.fadeOut(1000, function(){
+                    shortWeather.fadeIn(1000);
+                });
+            } 
+            else if (googleMap.is(':visible')) {
+                googleMap.fadeOut(1000, function(){
+                    shortWeather.fadeIn(1000);
+                });
+            }
+        }
     }
     
     
@@ -69,6 +77,12 @@ $(function() {
             });
             
             back.on('click', function(){
+                googleMap.fadeOut(function(){
+                    longWeather.fadeIn();
+                });
+            });
+            
+            header.on('click', function(){
                 googleMap.fadeOut(function(){
                     longWeather.fadeIn();
                 });
