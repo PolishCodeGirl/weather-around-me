@@ -12,6 +12,7 @@ $(function() {
     var longWeather = $(".longWeather");
     var googleMap = $(".googleMap");
     var hourlyWeather = $(".hourlyWeather");
+    var dailyWeather = $('.weatherArticle');
     
     
     function detailWeather() {
@@ -81,6 +82,11 @@ $(function() {
                     shortWeather.fadeIn(1000);
                 });
             }
+            else if(hourlyWeather.is(':visible')){
+                hourlyWeather.fadeOut(1000, function(){
+                    shortWeather.fadeIn(1000);
+                });
+            }
         }
     }
     
@@ -119,8 +125,31 @@ $(function() {
 //        });
     }
     
+    function showForecastOnTablet() {
+        if (window.matchMedia("(min-width: 768px)").matches) {
+            forecastBnt.on('click', function(){
+                dailyWeather.fadeOut(function(){
+                    hourlyWeather.fadeIn();
+                });
+            });
+            
+//            back.on('click', function(){
+//                googleMap.fadeOut(function(){
+//                    longWeather.fadeIn();
+//                });
+//            });
+//            
+//            header.on('click', function(){
+//                googleMap.fadeOut(function(){
+//                    longWeather.fadeIn();
+//                });
+//            });
+        }
+    }
+    
     detailWeather();
     showMapOnTablet();
+    showForecastOnTablet();
     
     function showMapOnDesktop() {
         var weather = $('.weatherArticle');
