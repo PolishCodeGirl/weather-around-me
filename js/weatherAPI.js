@@ -31,6 +31,29 @@ function getWeatherConditions(pos) {
                
     }
     
+    // AJAX function which gets weather conditions for next 5 times every 3 hours from finding city and place it in view
+    function insertHourlyWeather(weather) {
+        var hour = $('.hour'),
+            hourIcon = $('.hourIcon'),
+            hourTemp = $('.hourTemp');
+        
+        console.log('HERE!!! -->' + weather.list[0].main.temp);
+        console.log('HERE!!! -->' + weather.list[0].dt_txt);
+        console.log('HERE!!! -->' + weather.list[0].weather[0].icon);
+        
+        hour.text(weather.list[0].dt_txt);
+        
+        var tempHourAPI = weather.list[0].main.temp;
+        hourTemp.text(Math.round(tempHourAPI - 273.15));
+        
+        var icon = weather.list[0].weather[0].icon;
+        hourIcon.css("background-image", "url("+"http://openweathermap.org/img/w/"+ icon +".png" +")");
+        
+        ////////
+        // NAPISAC PĘTLĘ ITERUJĄCĄ 4 RAZY, KTORA STWORZY I APPENDUJE KOLEJNE WIERSZE DO TABELI
+        
+    }
+    
     // function which gets JASON from OpenWeatherMap API               
     function loadWeatherByAjax() {
         $.ajax({
@@ -48,7 +71,7 @@ function getWeatherConditions(pos) {
         $.ajax({
             url: 'http://api.openweathermap.org/data/2.5/forecast?lat=' + pos.lat + '&lon=' + pos.lng + '&APPID=503930aad7641d49d14d96dd199c7c2d'
         }).done(function(response){
-            //insertForecast(response);
+            insertHourlyWeather(response);
             console.log('Loaded');
         }).fail(function(error){
             console.log(error);

@@ -81,7 +81,11 @@
             <div class="row">
                 <div class="col-sm-1 col-lg-1"></div>
                 <div class="col-xs-12 col-sm-10 col-lg-10">
-<!--                    <input id="pac-input" class="controls" type="text" placeholder="Search Box">-->
+<!--
+                    <div class="form-group">
+                        <input id="pac-input" class="controls form-control" type="text" placeholder="Search Box">
+                    </div>
+-->
                     <div id="map"></div>
                     <button type="button" class="btn btn-primary btn-lg center-block showLess">
                         BACK <span class="glyphicon glyphicon-chevron-up"></span>
@@ -92,10 +96,35 @@
         </section>
         </article>
         
+        <article>
+            <!-- View for hourly forecast -->
+            <section class="container hourlyWeather">
+                <div class="row">
+                    <div class="col-xs-1 col-sm-2 col-lg-3"></div>
+                    <div class="col-xs-10 col-sm-8 col-lg-9">
+                        <p class="text-center cityName">Mozambik</p>
+                        <div class="detailedWeather">
+                            <table class="table-striped">
+                                <tr>
+                                    <td><span class="hour">12:00</span></td>
+                                    <td><span class="hourIcon"></span></td>
+                                    <td><span class="hourTemp">18</span>&deg;C</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <button type="button" class="btn btn-primary btn-lg center-block showLess">
+                            BACK <span class="glyphicon glyphicon-chevron-up"></span>
+                        </button>
+                    </div>
+                    <div class="col-xs-1 col-sm-2"></div>
+                </div>
+            </section>
+        </article>
+        
         <footer class="container navbar-fixed-bottom">
             <div class="text-center">
                 <div class="btn-group btn-group-lg" role="group">
-                    <button type="button" class="btn btn-default btnFooter"> FORECAST</button>
+                    <button type="button" class="btn btn-default btnFooter forecastBtn"> FORECAST</button>
                     <button type="button" class="btn btn-default mapBtn btnFooter"> MAP <span class="glyphicon glyphicon-globe"></span></button>
                 </div>
             </div>

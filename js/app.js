@@ -6,10 +6,12 @@ $(function() {
     var more = $(".showMore");
     var back = $(".showLess");
     var mapBtn = $(".mapBtn");
+    var forecastBnt = $(".forecastBtn");
     var header = $('header');
     var shortWeather = $(".shortWeather");
     var longWeather = $(".longWeather");
     var googleMap = $(".googleMap");
+    var hourlyWeather = $(".hourlyWeather");
     
     
     function detailWeather() {
@@ -46,6 +48,24 @@ $(function() {
                 });
             }
             console.log("Mapa działa!!!");
+        });
+        
+        forecastBnt.on('click', function(){
+            if (shortWeather.is(':visible')){
+                shortWeather.fadeOut(function(){
+                    hourlyWeather.fadeIn();
+                });
+            }
+            else if (longWeather.is(':visible')){
+                longWeather.fadeOut(function(){
+                    hourlyWeather.fadeIn();
+                });
+            }
+            else if (googleMap.is(':visible')){
+                googleMap.fadeOut(function(){
+                    hourlyWeather.fadeIn();
+                });
+            }
         });
         
         

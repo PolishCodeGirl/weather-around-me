@@ -70,6 +70,14 @@ section {
         width: 100%;
         //border: 1px solid green;
     }
+    &.hourlyWeather {
+        display: none;
+        .hourIcon {
+            width: 50px;
+            height: 50px;
+            display: block;
+        }
+    }
 }
 
 @media (min-width: 768px) {
@@ -156,7 +164,7 @@ section {
             .mainPicture {
                 //margin-top: 30px;
                 height: 10vh;
-                background-size: 35%;
+                background-size: 45%;
             }
             .temperature {
                 margin-top: 10px;

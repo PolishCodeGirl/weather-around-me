@@ -55,9 +55,30 @@
                   getWeatherConditions(newPos);
               });
               
-              ///////////////////////////////////////////////
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+
+      }
+
+      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+          
+          ///////////////////////////////////////////////
               /// PROBA DLA WPISYWANIA MIEJSCA W WYSZUKIWARCE
-              // Create the search box and link it to the UI element.
+          
+//            var map = new google.maps.Map(document.getElementById('map'), {
+//          center: {lat: 52.227, lng: 21.011},
+//          zoom: 10
+//        });
+//              // Create the search box and link it to the UI element.
 //        var input = document.getElementById('pac-input');
 //        var searchBox = new google.maps.places.SearchBox(input);
 //        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
@@ -129,28 +150,17 @@
 //                              lng: results[0].geometry.location.lng()
 //                          };
 //                      }
+//                      
+//                      console.log(newPos.lat);
+//                      console.log(newPos.lng);
 //                        // set new coordinates to function responsible for getting and showing location name and weather conditions
 //                        getCityName(newPos);
 //                        getWeatherConditions(newPos);
 //                  });
 //              }
+//          
+//          GetLatlong();
               
               //////////////////////////////////////////////
-              
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-          });
-        } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
-        }
-
-      }
-
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
           
       }
