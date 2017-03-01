@@ -38,58 +38,37 @@ function getWeatherConditions(pos) {
             hourTemp = $('.hourTemp');
         var table = $('.hourlyTable');
         
-        console.log('HERE!!! -->' + weather.list[0].main.temp);
-        console.log('HERE!!! -->' + weather.list[0].dt_txt);
-        console.log('HERE!!! -->' + weather.list[0].weather[0].icon);
-        
-        hour.text(weather.list[0].dt_txt);
-        
-        var tempHourAPI = weather.list[0].main.temp;
-        hourTemp.text(Math.round(tempHourAPI - 273.15));
-        
-        var icon = weather.list[0].weather[0].icon;
-        hourIcon.css("background-image", "url("+"http://openweathermap.org/img/w/"+ icon +".png" +")");
-        
-        ////////
-        // NAPISAC PĘTLĘ ITERUJĄCĄ 4 RAZY, KTORA STWORZY I APPENDUJE KOLEJNE WIERSZE DO TABELI
-        // WAŻNE --> pętla nie działa ponieważ w miejscu gdzie wstawiłam i to nie jest to tabica, tylko obiekt, więc w jakiś sposób muszę się do niego dostać 
-        
- ////       $.each(weather.list[0], function(data) {
-////            var newRow = $('<tr>');
-////            
-////            var tdHour = $('<td><spanclass="hour">'+ data.dt_txt +'</span></td>');
-////            console.log(data.valueOf());
-        
-//            var tempHourAPI = data.main.temp;
-//            var tdTemp = $('<td><spanclass="hourTemp">'+ hourTemp.text(Math.round(tempHourAPI - 273.15)) +'</span></td>');
-
-//            var icon = data.weather[0].icon;
-//            var tdIcon = $('<td><spanclass="hourIcon">'+ hourIcon.css("background-image", "url("+"http://openweathermap.org/img/w/"+ icon +".png" +")") +'</span></td>');
-            
-//            newRow.append(tdHour);
-//            newRow.append(tdIcon);
-//            newRow.append(tdTemp);
-//            
-//            table.append(newRow);
-//        });
-        
-//        for (var i=1; i<=4; i++) {
-//            var newRow = $('<tr>');
-//            
-//            var tdHour = $('<td><spanclass="hour">'+ hour.text(weather.list[i].dt_txt) +'</span></td>');
+//        console.log('HERE!!! -->' + weather.list[0].main.temp);
+//        console.log('HERE!!! -->' + weather.list[0].dt_txt);
+//        console.log('HERE!!! -->' + weather.list[0].weather[0].icon);
 //        
-//            var tempHourAPI = weather.list[i].main.temp;
-//            var tdTemp = $('<td><spanclass="hourTemp">'+ hourTemp.text(Math.round(tempHourAPI - 273.15)) +'</span></td>');
-//
-//            var icon = weather.list[i].weather[0].icon;
-//            var tdIcon = $('<td><spanclass="hourIcon">'+ hourIcon.css("background-image", "url("+"http://openweathermap.org/img/w/"+ icon +".png" +")") +'</span></td>');
-//            
-//            newRow.append(tdHour);
-//            newRow.append(tdIcon);
-//            newRow.append(tdTemp);
-//            
-//            table.append(newRow);
-//        }
+//        hour.text(weather.list[0].dt_txt);
+//        
+//        var tempHourAPI = weather.list[0].main.temp;
+//        hourTemp.text(Math.round(tempHourAPI - 273.15));
+//        
+//        var icon = weather.list[0].weather[0].icon;
+//        hourIcon.css("background-image", "url("+"http://openweathermap.org/img/w/"+ icon +".png" +")");
+        
+        for (var i=0; i<=4; i++) {
+            var newRow = $('<tr>');
+            
+            var tdHour = $('<td><span class="hour">'+ weather.list[i].dt_txt +'</span></td>');
+            console.log(weather.list[i]);
+        
+            var tempHourAPI = weather.list[i].main.temp;
+            var tdTemp = $('<td><span class="hourTemp">'+ Math.round(tempHourAPI - 273.15) +'</span>&deg;C</td>');
+
+            var icon = weather.list[i].weather[0].icon;
+            var address = "http://openweathermap.org/img/w/"+ icon +".png";
+            var tdIcon = $('<td><span class="hourIcon" style="background-image: url('+ address +'")></span></td>');
+            
+            newRow.append(tdHour);
+            newRow.append(tdIcon);
+            newRow.append(tdTemp);
+            
+            table.append(newRow);
+        }
         
     }
     
