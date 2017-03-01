@@ -36,6 +36,7 @@ function getWeatherConditions(pos) {
         var hour = $('.hour'),
             hourIcon = $('.hourIcon'),
             hourTemp = $('.hourTemp');
+        var table = $('.hourlyTable');
         
         console.log('HERE!!! -->' + weather.list[0].main.temp);
         console.log('HERE!!! -->' + weather.list[0].dt_txt);
@@ -51,6 +52,44 @@ function getWeatherConditions(pos) {
         
         ////////
         // NAPISAC PĘTLĘ ITERUJĄCĄ 4 RAZY, KTORA STWORZY I APPENDUJE KOLEJNE WIERSZE DO TABELI
+        // WAŻNE --> pętla nie działa ponieważ w miejscu gdzie wstawiłam i to nie jest to tabica, tylko obiekt, więc w jakiś sposób muszę się do niego dostać 
+        
+ ////       $.each(weather.list[0], function(data) {
+////            var newRow = $('<tr>');
+////            
+////            var tdHour = $('<td><spanclass="hour">'+ data.dt_txt +'</span></td>');
+////            console.log(data.valueOf());
+        
+//            var tempHourAPI = data.main.temp;
+//            var tdTemp = $('<td><spanclass="hourTemp">'+ hourTemp.text(Math.round(tempHourAPI - 273.15)) +'</span></td>');
+
+//            var icon = data.weather[0].icon;
+//            var tdIcon = $('<td><spanclass="hourIcon">'+ hourIcon.css("background-image", "url("+"http://openweathermap.org/img/w/"+ icon +".png" +")") +'</span></td>');
+            
+//            newRow.append(tdHour);
+//            newRow.append(tdIcon);
+//            newRow.append(tdTemp);
+//            
+//            table.append(newRow);
+//        });
+        
+//        for (var i=1; i<=4; i++) {
+//            var newRow = $('<tr>');
+//            
+//            var tdHour = $('<td><spanclass="hour">'+ hour.text(weather.list[i].dt_txt) +'</span></td>');
+//        
+//            var tempHourAPI = weather.list[i].main.temp;
+//            var tdTemp = $('<td><spanclass="hourTemp">'+ hourTemp.text(Math.round(tempHourAPI - 273.15)) +'</span></td>');
+//
+//            var icon = weather.list[i].weather[0].icon;
+//            var tdIcon = $('<td><spanclass="hourIcon">'+ hourIcon.css("background-image", "url("+"http://openweathermap.org/img/w/"+ icon +".png" +")") +'</span></td>');
+//            
+//            newRow.append(tdHour);
+//            newRow.append(tdIcon);
+//            newRow.append(tdTemp);
+//            
+//            table.append(newRow);
+//        }
         
     }
     
