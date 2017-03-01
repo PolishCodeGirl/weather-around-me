@@ -3,16 +3,17 @@
 //});
 
 $(function() {
-    var more = $(".showMore");
-    var back = $(".showLess");
-    var mapBtn = $(".mapBtn");
-    var forecastBnt = $(".forecastBtn");
-    var header = $('header');
-    var shortWeather = $(".shortWeather");
-    var longWeather = $(".longWeather");
-    var googleMap = $(".googleMap");
-    var hourlyWeather = $(".hourlyWeather");
-    var dailyWeather = $('.weatherArticle');
+    var more = $(".showMore"),
+        back = $(".showLess"),
+        mapBtn = $(".mapBtn"),
+        forecastBnt = $(".forecastBtn"),
+        header = $('header');
+    var shortWeather = $(".shortWeather"),
+        longWeather = $(".longWeather"),
+        googleMap = $(".googleMap"),
+        hourlyWeather = $(".hourlyWeather"),
+        dailyWeather = $('.weatherArticle'),
+        forecastWeather = $('.forecastArticle');
     
     
     function detailWeather() {
@@ -34,23 +35,30 @@ $(function() {
         
         // event for 'MAP' button 
         mapBtn.on('click', function(){
-            if(!shortWeather.is(':visible')){
+            if(longWeather.is(':visible')){
                 longWeather.fadeOut(function(){
                     googleMap.fadeIn();
                     var map = document.getElementById('map');
                     google.maps.event.trigger(map, 'resize');
                 });
             }
-            else if (!longWeather.is(':visible')){
+            else if (shortWeather.is(':visible')){
                 shortWeather.fadeOut(function(){
                     googleMap.fadeIn();
                     var map = document.getElementById('map');
                     google.maps.event.trigger(map, 'resize');
                 });
             }
-            console.log("Mapa działa!!!");
+            else if (hourlyWeather.is(':visible')) {
+                hourlyWeather.fadeOut(function(){
+                    googleMap.fadeIn();
+                    var map = document.getElementById('map');
+                    google.maps.event.trigger(map, 'resize');
+                });
+            }
         });
         
+        // event for 'FORECAST' button
         forecastBnt.on('click', function(){
             if (shortWeather.is(':visible')){
                 shortWeather.fadeOut(function(){
@@ -109,9 +117,21 @@ $(function() {
             });
             
             header.on('click', function(){
-                googleMap.fadeOut(function(){
-                    longWeather.fadeIn();
-                });
+                if (googleMap.is(':visible')) {
+                    googleMap.fadeOut(function(){
+                        longWeather.fadeIn();
+                    });
+                }
+                else if (hourlyWeather.is(':visible')) {
+                    hourlyWeather.fadeOut(function(){
+                        dailyWeather.fadeIn();
+                    });
+                }
+               
+            });
+            
+            forecastBnt.on('click', function(){
+                
             });
         }
         
@@ -128,9 +148,16 @@ $(function() {
     function showForecastOnTablet() {
         if (window.matchMedia("(min-width: 768px)").matches) {
             forecastBnt.on('click', function(){
-                dailyWeather.fadeOut(function(){
-                    hourlyWeather.fadeIn();
-                });
+                if(dailyWeather.is(':visible')) {
+                    dailyWeather.fadeOut(function(){
+                        forecastWeather.fadeIn();
+                    });
+                }
+                else if (googleMap.is(':visible')){
+                    googleMap.fadeOut(function(){
+                        forecastWeather.fadeIn();
+                    });
+                }
             });
             
 //            back.on('click', function(){
