@@ -50,10 +50,13 @@ function getWeatherConditions(pos) {
 //        var icon = weather.list[0].weather[0].icon;
 //        hourIcon.css("background-image", "url("+"http://openweathermap.org/img/w/"+ icon +".png" +")");
         
+        
+        //ZASTANOWIĆ SIĘ CZY WPISAC OD ZERA NA SZTYWNO (KOD NA GÓRZE) I DOPISYWAC KOLEJNE LINIKI, CZY OD RAZU ITEROWAĆ OD ZERA DO ZADANEJ WIELOŚCI 
         for (var i=0; i<=4; i++) {
             var newRow = $('<tr>');
             
-            var tdHour = $('<td><span class="hour">'+ weather.list[i].dt_txt +'</span></td>');
+            // used slice() method to cut information from JASON from format"2017-03-02 03:00:00" to "03:00:00"
+            var tdHour = $('<td><span class="hour">'+ (weather.list[i].dt_txt).slice(11,19) +'</span></td>');
             console.log(weather.list[i]);
         
             var tempHourAPI = weather.list[i].main.temp;
