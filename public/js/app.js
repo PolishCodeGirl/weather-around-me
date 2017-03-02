@@ -100,14 +100,16 @@ $(function() {
     
     
     //?????? POPRAWIC
-    function showMapOnTablet() {
+    function showViewsOnTablet() {
         if (window.matchMedia("(min-width: 768px)").matches) {
             mapBtn.on('click', function(){
-                longWeather.fadeOut(function(){
-                    googleMap.fadeIn();
-                    var map = document.getElementById('map');
-                    google.maps.event.trigger(map, 'resize');
-                });
+                if (longWeather.is(':visible')) {
+                    longWeather.fadeOut(function(){
+                        googleMap.fadeIn();
+                        var map = document.getElementById('map');
+                        google.maps.event.trigger(map, 'resize');
+                    });
+                }
             });
             
             back.on('click', function(){
@@ -131,7 +133,33 @@ $(function() {
             });
             
             forecastBnt.on('click', function(){
+                // change footer button depends on which view is on the screen
+                if ($(this).text() == "FORECAST") {
+                    $(this).text("DAILY");
+                }
+                else {
+                    $(this).text("FORECAST");
+                }
                 
+                // change view 
+                if(dailyWeather.is(':visible')) {
+                    dailyWeather.fadeOut(function(){
+                        forecastWeather.fadeIn();
+                        console.log("I do not know why it does work");
+                    });
+                }
+                else if (googleMap.is(':visible')){
+                    googleMap.fadeOut(function(){
+                        forecastWeather.fadeIn();
+                    });
+                } 
+                // FIND OUT WHAT IT DOESN'T WORK
+                else if (forecastWeather.is(':visible')) {
+                    forecastWeather.fadeOut(function(){
+                        dailyWeather.fadeIn();
+                        console.log("I do not know why it does not work");
+                    });
+                }
             });
         }
         
@@ -145,38 +173,8 @@ $(function() {
 //        });
     }
     
-    function showForecastOnTablet() {
-        if (window.matchMedia("(min-width: 768px)").matches) {
-            forecastBnt.on('click', function(){
-                if(dailyWeather.is(':visible')) {
-                    dailyWeather.fadeOut(function(){
-                        forecastWeather.fadeIn();
-                    });
-                }
-                else if (googleMap.is(':visible')){
-                    googleMap.fadeOut(function(){
-                        forecastWeather.fadeIn();
-                    });
-                }
-            });
-            
-//            back.on('click', function(){
-//                googleMap.fadeOut(function(){
-//                    longWeather.fadeIn();
-//                });
-//            });
-//            
-//            header.on('click', function(){
-//                googleMap.fadeOut(function(){
-//                    longWeather.fadeIn();
-//                });
-//            });
-        }
-    }
-    
     detailWeather();
-    showMapOnTablet();
-    showForecastOnTablet();
+    showViewsOnTablet();
     
     function showMapOnDesktop() {
         var weather = $('.weatherArticle');

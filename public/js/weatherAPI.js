@@ -58,7 +58,6 @@ function getWeatherConditions(pos) {
             
             // used slice() method to cut information from JASON from format"2017-03-02 03:00:00" to "03:00:00"
             var tdHour = $('<td><span class="hour">'+ (weather.list[i].dt_txt).slice(11,16) +'</span></td>');
-            console.log(weather.list[i]);
         
             var tempHourAPI = weather.list[i].main.temp;
             var tdTemp = $('<td><span class="hourTemp">'+ Math.round(tempHourAPI - 273.15) +'</span>&deg;C</td>');
