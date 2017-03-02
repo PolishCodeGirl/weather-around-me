@@ -1,4 +1,5 @@
 function getWeatherConditions(pos) {
+    var table = $('.hourlyTable');
     
     // AJAX function which gets weather conditions from finding city and place it in view
     function insertWeather(weather) {
@@ -56,7 +57,7 @@ function getWeatherConditions(pos) {
             var newRow = $('<tr>');
             
             // used slice() method to cut information from JASON from format"2017-03-02 03:00:00" to "03:00:00"
-            var tdHour = $('<td><span class="hour">'+ (weather.list[i].dt_txt).slice(11,19) +'</span></td>');
+            var tdHour = $('<td><span class="hour">'+ (weather.list[i].dt_txt).slice(11,16) +'</span></td>');
             console.log(weather.list[i]);
         
             var tempHourAPI = weather.list[i].main.temp;
@@ -92,7 +93,8 @@ function getWeatherConditions(pos) {
         $.ajax({
             url: 'http://api.openweathermap.org/data/2.5/forecast?lat=' + pos.lat + '&lon=' + pos.lng + '&APPID=503930aad7641d49d14d96dd199c7c2d'
         }).done(function(response){
-            insertHourlyWeather(response);
+            table.empty(); // table.empty() --> removes all rows from forecast table everytime when we change location 
+            insertHourlyWeather(response); // loaded all informations about forecast everytime when we change location
             console.log('Loaded');
         }).fail(function(error){
             console.log(error);
