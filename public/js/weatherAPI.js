@@ -31,6 +31,7 @@ function getWeatherConditions(pos) {
         iconIgm.css("background-image", "url("+"http://openweathermap.org/img/w/"+ icon +".png" +")");
                
     }
+// -------------------------------------------------------------
     
     // AJAX function which gets weather conditions for next 5 times every 3 hours from finding city and place it in view
     function insertHourlyWeather(weather) {
@@ -74,6 +75,13 @@ function getWeatherConditions(pos) {
         }
         
     }
+// -----------------------------------------------------------------
+    
+    // AJAX function which gets weather conditions for next 5 days from finding city and place it in view
+    function insert5DaysWeather(weather) {
+        
+    }
+// -----------------------------------------------------------------
     
     // function which gets JASON from OpenWeatherMap API               
     function loadWeatherByAjax() {
