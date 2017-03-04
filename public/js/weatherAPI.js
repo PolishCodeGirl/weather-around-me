@@ -79,7 +79,11 @@ function getWeatherConditions(pos) {
     
     // AJAX function which gets weather conditions for next 5 days from finding city and place it in view
     function insert5DaysWeather(weather) {
-        
+        for (var i=0; i<weather.list.length; i++) {
+            if ((weather.list[i].dt_txt.indexOf("12:00:00")) != -1) {
+                console.log(weather.list[i].dt_txt.indexOf("12:00:00"));
+            }
+        }
     }
 // -----------------------------------------------------------------
     
@@ -102,6 +106,7 @@ function getWeatherConditions(pos) {
         }).done(function(response){
             table.empty(); // table.empty() --> removes all rows from forecast table everytime when we change location 
             insertHourlyWeather(response); // loaded all informations about forecast everytime when we change location
+            insert5DaysWeather(response);
             console.log('Loaded');
         }).fail(function(error){
             console.log(error);
