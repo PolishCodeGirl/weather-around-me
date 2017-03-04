@@ -1,5 +1,6 @@
 function getWeatherConditions(pos) {
     var table = $('.hourlyTable');
+    var tableFor5Days = $('.fiveDaysTable');
     
     // AJAX function which gets weather conditions from finding city and place it in view
     function insertWeather(weather) {
@@ -82,6 +83,24 @@ function getWeatherConditions(pos) {
         for (var i=0; i<weather.list.length; i++) {
             if ((weather.list[i].dt_txt.indexOf("12:00:00")) != -1) {
                 console.log(weather.list[i].dt_txt.indexOf("12:00:00"));
+                
+                var newRow = $('<tr>');
+                
+                var tdHour = $('<td><span class="hour">'+ (weather.list[i].dt_txt).slice(11,16) +'</span></td>');
+                
+                var tempHourAPI = weather.list[i].main.temp;
+                var tdTemp = $('<td><span class="hourTemp">'+ Math.round(tempHourAPI - 273.15) +'</span>&deg;C</td>');
+
+                var icon = weather.list[i].weather[0].icon;
+                var address = "http://openweathermap.org/img/w/"+ icon +".png";
+                var tdIcon = $('<td><span class="hourIcon" style="background-image: url('+ address +'")></span></td>');
+
+                newRow.append(tdHour);
+                newRow.append(tdIcon);
+                newRow.append(tdTemp);
+
+                tableFor5Days.append(newRow);
+                
             }
         }
     }
@@ -105,8 +124,9 @@ function getWeatherConditions(pos) {
             url: 'http://api.openweathermap.org/data/2.5/forecast?lat=' + pos.lat + '&lon=' + pos.lng + '&APPID=503930aad7641d49d14d96dd199c7c2d'
         }).done(function(response){
             table.empty(); // table.empty() --> removes all rows from forecast table everytime when we change location 
+            //tableFor5Days.empty();
             insertHourlyWeather(response); // loaded all informations about forecast everytime when we change location
-            insert5DaysWeather(response);
+            //insert5DaysWeather(response);
             console.log('Loaded');
         }).fail(function(error){
             console.log(error);
