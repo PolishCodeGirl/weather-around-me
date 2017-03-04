@@ -74,7 +74,6 @@ function getWeatherConditions(pos) {
             
             table.append(newRow);
         }
-        
     }
 // -----------------------------------------------------------------
     
@@ -103,6 +102,14 @@ function getWeatherConditions(pos) {
                 
             }
         }
+        
+        // method which returns the day of the week (0-6, Sunday(0)-Saturday(6)) for the specified date according to local time.  
+        var currentDate = new Date();
+        var day = currentDate.getDay();
+        console.log(day);
+        
+        // array for all days in week
+        var days = ['Sunday', 'Monday', 'Today', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     }
 // -----------------------------------------------------------------
     
