@@ -109,7 +109,19 @@ function getWeatherConditions(pos) {
         console.log(day);
         
         // array for all days in week
-        var days = ['Sunday', 'Monday', 'Today', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        var weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        var j=0;
+        
+        // loop which gets names of the next 5 days 
+        for (var i=0; i<5; i++) {
+            if(day == weekDays.length-1) {
+                day = -1;
+            }
+            day++;
+            console.log(day);
+            var nextDay = weekDays[day];
+            console.log(nextDay);
+        }
     }
 // -----------------------------------------------------------------
     
