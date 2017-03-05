@@ -79,13 +79,41 @@ function getWeatherConditions(pos) {
     
     // AJAX function which gets weather conditions for next 5 days from finding city and place it in view
     function insert5DaysWeather(weather) {
+        // method which returns the day of the week (0-6, Sunday(0)-Saturday(6)) for the specified date according to local time.  
+        var currentDate = new Date();
+        var day = currentDate.getDay();
+        console.log(day);
+        
+        // array for all days in week
+        var weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        
+        // loop which gets names of the next 5 days 
+//        for (var i=0; i<5; i++) {
+//            if(day == weekDays.length-1) {
+//                day = -1;
+//            }
+//            day++;
+//            console.log(day);
+//            var nextDay = weekDays[day];
+//            console.log(nextDay);
+//        }
+        
+        
         for (var i=0; i<weather.list.length; i++) {
             if ((weather.list[i].dt_txt.indexOf("12:00:00")) != -1) {
                 console.log(weather.list[i].dt_txt.indexOf("12:00:00"));
                 
                 var newRow = $('<tr>');
                 
-                var tdHour = $('<td><span class="hour">'+ (weather.list[i].dt_txt).slice(11,16) +'</span></td>');
+                if(day == weekDays.length-1) {
+                    day = -1;
+                }
+                day++;
+                //console.log(day);
+                var nextDay = weekDays[day];
+                //console.log(nextDay);
+                
+                var tdHour = $('<td><span class="hour">'+ nextDay +'</span></td>');
                 
                 var tempHourAPI = weather.list[i].main.temp;
                 var tdTemp = $('<td><span class="hourTemp">'+ Math.round(tempHourAPI - 273.15) +'</span>&deg;C</td>');
@@ -101,26 +129,6 @@ function getWeatherConditions(pos) {
                 tableFor5Days.append(newRow);
                 
             }
-        }
-        
-        // method which returns the day of the week (0-6, Sunday(0)-Saturday(6)) for the specified date according to local time.  
-        var currentDate = new Date();
-        var day = currentDate.getDay();
-        console.log(day);
-        
-        // array for all days in week
-        var weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-        var j=0;
-        
-        // loop which gets names of the next 5 days 
-        for (var i=0; i<5; i++) {
-            if(day == weekDays.length-1) {
-                day = -1;
-            }
-            day++;
-            console.log(day);
-            var nextDay = weekDays[day];
-            console.log(nextDay);
         }
     }
 // -----------------------------------------------------------------
@@ -144,8 +152,8 @@ function getWeatherConditions(pos) {
         }).done(function(response){
             table.empty(); // table.empty() --> removes all rows from forecast table everytime when we change location 
             //tableFor5Days.empty();
-            insertHourlyWeather(response); // loaded all informations about forecast everytime when we change location
-            //insert5DaysWeather(response);
+            //insertHourlyWeather(response); // loaded all informations about forecast everytime when we change location
+            insert5DaysWeather(response);
             console.log('Loaded');
         }).fail(function(error){
             console.log(error);

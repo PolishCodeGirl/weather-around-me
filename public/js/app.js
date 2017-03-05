@@ -12,6 +12,7 @@ $(function() {
         longWeather = $(".longWeather"),
         googleMap = $(".googleMap"),
         hourlyWeather = $(".hourlyWeather"),
+        fiveDaysWeather = $(".fiveDaysWeather"),
         dailyWeather = $('.weatherArticle'),
         forecastWeather = $('.forecastArticle');
     
@@ -62,17 +63,20 @@ $(function() {
         forecastBnt.on('click', function(){
             if (shortWeather.is(':visible')){
                 shortWeather.fadeOut(function(){
-                    hourlyWeather.fadeIn();
+//                    hourlyWeather.fadeIn();
+                    fiveDaysWeather.fadeIn();
                 });
             }
             else if (longWeather.is(':visible')){
                 longWeather.fadeOut(function(){
-                    hourlyWeather.fadeIn();
+//                    hourlyWeather.fadeIn();
+                    fiveDaysWeather.fadeIn();
                 });
             }
             else if (googleMap.is(':visible')){
                 googleMap.fadeOut(function(){
-                    hourlyWeather.fadeIn();
+//                    hourlyWeather.fadeIn();
+                    fiveDaysWeather.fadeIn();
                 });
             }
         });
