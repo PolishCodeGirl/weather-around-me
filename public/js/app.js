@@ -38,24 +38,30 @@ $(function() {
         
         // event for 'MAP' button 
         mapBtn.on('click', function(){
+            var map = document.getElementById('map');
+            
             if(longWeather.is(':visible')){
                 longWeather.fadeOut(function(){
                     googleMap.fadeIn();
-                    var map = document.getElementById('map');
+                    //var map = document.getElementById('map');
                     google.maps.event.trigger(map, 'resize');
                 });
             }
             else if (shortWeather.is(':visible')){
                 shortWeather.fadeOut(function(){
                     googleMap.fadeIn();
-                    var map = document.getElementById('map');
                     google.maps.event.trigger(map, 'resize');
                 });
             }
             else if (hourlyWeather.is(':visible')) {
                 hourlyWeather.fadeOut(function(){
                     googleMap.fadeIn();
-                    var map = document.getElementById('map');
+                    google.maps.event.trigger(map, 'resize');
+                });
+            }
+            else if (fiveDaysWeather.is(':visible')) {
+                fiveDaysWeather.fadeOut(function(){
+                    googleMap.fadeIn();
                     google.maps.event.trigger(map, 'resize');
                 });
             }
