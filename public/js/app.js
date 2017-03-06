@@ -7,7 +7,9 @@ $(function() {
         back = $(".showLess"),
         mapBtn = $(".mapBtn"),
         forecastBnt = $(".forecastBtn"),
-        header = $('header');
+        header = $('header'),
+        fiveDaysBtn = $('.show5Days'),
+        hourlyBtn = $('.showHourly');
     var shortWeather = $(".shortWeather"),
         longWeather = $(".longWeather"),
         googleMap = $(".googleMap"),
@@ -63,20 +65,35 @@ $(function() {
         forecastBnt.on('click', function(){
             if (shortWeather.is(':visible')){
                 shortWeather.fadeOut(function(){
-//                    hourlyWeather.fadeIn();
-                    fiveDaysWeather.fadeIn();
+                    hourlyWeather.fadeIn();
                 });
             }
             else if (longWeather.is(':visible')){
                 longWeather.fadeOut(function(){
-//                    hourlyWeather.fadeIn();
-                    fiveDaysWeather.fadeIn();
+                    hourlyWeather.fadeIn();
                 });
             }
             else if (googleMap.is(':visible')){
                 googleMap.fadeOut(function(){
-//                    hourlyWeather.fadeIn();
+                    hourlyWeather.fadeIn();
+                });
+            }
+        });
+        
+        //event for '5 DAYS' button
+        fiveDaysBtn.on('click', function(){
+            if(hourlyWeather.is(':visible')) {
+                hourlyWeather.fadeOut(function(){
                     fiveDaysWeather.fadeIn();
+                });
+            }
+        });
+        
+         //event for 'HOURLY' button
+        hourlyBtn.on('click', function(){
+            if(fiveDaysWeather.is(':visible')) {
+                fiveDaysWeather.fadeOut(function(){
+                    hourlyWeather.fadeIn();
                 });
             }
         });
@@ -94,8 +111,13 @@ $(function() {
                     shortWeather.fadeIn(1000);
                 });
             }
-            else if(hourlyWeather.is(':visible')){
+            else if (hourlyWeather.is(':visible')){
                 hourlyWeather.fadeOut(1000, function(){
+                    shortWeather.fadeIn(1000);
+                });
+            }
+            else if (fiveDaysWeather.is(':visible')){
+                fiveDaysWeather.fadeOut(1000, function(){
                     shortWeather.fadeIn(1000);
                 });
             }

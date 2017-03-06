@@ -151,8 +151,8 @@ function getWeatherConditions(pos) {
             url: 'http://api.openweathermap.org/data/2.5/forecast?lat=' + pos.lat + '&lon=' + pos.lng + '&APPID=503930aad7641d49d14d96dd199c7c2d'
         }).done(function(response){
             table.empty(); // table.empty() --> removes all rows from forecast table everytime when we change location 
-            //tableFor5Days.empty();
-            //insertHourlyWeather(response); // loaded all informations about forecast everytime when we change location
+            tableFor5Days.empty();
+            insertHourlyWeather(response); // loaded all informations about forecast everytime when we change location
             insert5DaysWeather(response);
             console.log('Loaded');
         }).fail(function(error){
