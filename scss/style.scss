@@ -81,6 +81,11 @@ section {
 }
 
 @media (min-width: 768px) {
+    article {
+        &.weatherArticle {
+            display: block;
+        }
+    }
     section {
         &.shortWeather {
             height: 35vh;

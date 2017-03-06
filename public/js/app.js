@@ -69,6 +69,14 @@ $(function() {
         
         // event for 'FORECAST' button
         forecastBnt.on('click', function(){
+            // change footer button depends on which view is on the screen
+            if ($(this).text() == "FORECAST") {
+                $(this).text("DAILY");
+            }
+            else {
+                $(this).text("FORECAST");
+            }
+                
             if (shortWeather.is(':visible')){
                 shortWeather.fadeOut(function(){
                     hourlyWeather.fadeIn();
@@ -82,6 +90,16 @@ $(function() {
             else if (googleMap.is(':visible')){
                 googleMap.fadeOut(function(){
                     hourlyWeather.fadeIn();
+                });
+            }
+            else if(hourlyWeather.is(':visible')){
+                hourlyWeather.fadeOut(function(){
+                    shortWeather.fadeIn();
+                });
+            }
+            else if (fiveDaysWeather.is(':visible')){
+                fiveDaysWeather.fadeOut(function(){
+                    shortWeather.fadeIn();
                 });
             }
         });
@@ -140,6 +158,7 @@ $(function() {
                         googleMap.fadeIn();
                         var map = document.getElementById('map');
                         google.maps.event.trigger(map, 'resize');
+                        mapBtn.attr('disabled', 'disabled');
                     });
                 }
             });
@@ -147,6 +166,7 @@ $(function() {
             back.on('click', function(){
                 googleMap.fadeOut(function(){
                     longWeather.fadeIn();
+                    mapBtn.removeAttr('disabled');
                 });
             });
             
@@ -154,6 +174,7 @@ $(function() {
                 if (googleMap.is(':visible')) {
                     googleMap.fadeOut(function(){
                         longWeather.fadeIn();
+                        mapBtn.removeAttr('disabled');
                     });
                 }
                 else if (hourlyWeather.is(':visible')) {
@@ -165,14 +186,6 @@ $(function() {
             });
             
             forecastBnt.on('click', function(){
-                // change footer button depends on which view is on the screen
-                if ($(this).text() == "FORECAST") {
-                    $(this).text("DAILY");
-                }
-                else {
-                    $(this).text("FORECAST");
-                }
-                
                 // change view 
                 if(dailyWeather.is(':visible')) {
                     dailyWeather.fadeOut(function(){
