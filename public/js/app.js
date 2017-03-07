@@ -187,9 +187,10 @@ $(function() {
             
             forecastBnt.on('click', function(){
                 // change view 
-                if(dailyWeather.is(':visible')) {
+                if(shortWeather.is(':visible')) {
                     dailyWeather.fadeOut(function(){
-                        forecastWeather.fadeIn();
+                        hourlyWeather.fadeIn();
+                        fiveDaysWeather.fadeIn();
                         console.log("I do not know why it does work");
                     });
                 }

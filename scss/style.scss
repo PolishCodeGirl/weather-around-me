@@ -50,15 +50,15 @@ section {
 section {
     &.longWeather {
         display: none;
-    }
-    .detailedWeather {
-        height: 55vh;//350px; // POPRAWIC na vh, żeby dopasowywało się do odbiornika
-        //border: 1px solid green;
-        table {
-            width: 100%;
-            height: 100%;
-            font-size: 1.3em;
-            font-style: italic;
+        .detailedWeather {
+            height: 55vh;//350px; // POPRAWIC na vh, żeby dopasowywało się do odbiornika
+            //border: 1px solid green;
+            table {
+                width: 100%;
+                height: 100%;
+                font-size: 1.3em;
+                font-style: italic;
+            }
         }
     }
     &.googleMap {
@@ -72,10 +72,19 @@ section {
     }
     &.hourlyWeather, &.fiveDaysWeather {
         display: none;
-        .hourIcon, .fiveDaysIcon {
-            width: 50px;
-            height: 50px;
-            display: block;
+        .tableWeather {
+            height: 55vh;
+            table {
+                width: 100%;
+                height: 100%;
+                font-size: 1.3em;
+                font-style: italic;
+                .hourIcon, .fiveDaysIcon {
+                    width: 50px;
+                    height: 50px;
+                    display: block;
+                }
+            }
         }
     }
 }
@@ -115,15 +124,50 @@ section {
             button {
                 display: none;
             }
-        }
-        .detailedWeather {
-            height: 45vh;
+            .detailedWeather {
+                height: 40vh;
+                table {
+                    width: 100%;
+                    height: 100%;
+                    font-size: 1.3em;
+                    font-style: italic;
+                }
+            }
         }
         &.googleMap {
             #map {
                 height: 35vh;
             }
         }
+        &.hourlyWeather {
+            height: 45vh;
+            button {
+                display: none;
+            }
+            .tableWeather {
+                height: 35vh;
+                table {
+                    height: 35vh;
+                    font-size: 1.5em;
+                }
+            }
+        }
+        &.fiveDaysWeather {
+            height: 45vh;
+            .cityName {
+                display: none;
+            }
+            button {
+                display: none;
+            }
+            .tableWeather {
+                height: 35vh;
+                table {
+                    height: 35vh;
+                    font-size: 1.5em;
+                }
+            }
+        }  
     }
 }
 
