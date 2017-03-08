@@ -226,8 +226,11 @@ $(function() {
         var weather = $('.weatherArticle');
         var map = $('.mapArticle');
         if (window.matchMedia("(min-width: 992px)").matches) {
-           weather.addClass('pull-left');
+            weather.addClass('pull-left');
             map.addClass('pull-right');
+            
+            hourlyWeather.addClass('pull-left');
+            fiveDaysWeather.addClass('pull-right');
         }
     }
     
