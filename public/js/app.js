@@ -225,12 +225,19 @@ $(function() {
     function showMapOnDesktop() {
         var weather = $('.weatherArticle');
         var map = $('.mapArticle');
+        var hourlyName = hourlyWeather.find('.cityName'),
+            fiveDaysName = fiveDaysWeather.find('.cityName');
+        
         if (window.matchMedia("(min-width: 992px)").matches) {
             weather.addClass('pull-left');
             map.addClass('pull-right');
             
             hourlyWeather.addClass('pull-left');
             fiveDaysWeather.addClass('pull-right');
+            
+            //////// POPRAWIC
+            hourlyName.text('Hourly weather');
+            fiveDaysName.text('Forecast');
         }
     }
     

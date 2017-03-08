@@ -243,11 +243,18 @@ section {
             width: 45vw;
             height: 95vh;
             display: block;
+            .tableWeather {
+                height: 70vh;
+                table{
+                    height: 100%;
+                }
+            }
         }
-//        &.fiveDaysWeather {
-//            width: 45vw;
-//            display: block;
-//        }
+        &.fiveDaysWeather {
+            .cityName {
+                display: block;
+            }
+        }
         
     }
     footer {
