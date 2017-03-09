@@ -225,19 +225,24 @@ $(function() {
     function showMapOnDesktop() {
         var weather = $('.weatherArticle');
         var map = $('.mapArticle');
-        var hourlyName = hourlyWeather.find('.cityName'),
-            fiveDaysName = fiveDaysWeather.find('.cityName');
+        var hourlyTable = hourlyWeather.find('.tableWeather'),
+            fiveDaysTable = fiveDaysWeather.find('.tableWeather');
         
         if (window.matchMedia("(min-width: 992px)").matches) {
+            // put mainWeatherView & googleMaps next each other
             weather.addClass('pull-left');
             map.addClass('pull-right');
             
+            // put hourlyWeather & 5DaysWeather next each other 
             hourlyWeather.addClass('pull-left');
             fiveDaysWeather.addClass('pull-right');
             
-            //////// POPRAWIC
-            hourlyName.text('Hourly weather');
-            fiveDaysName.text('Forecast');
+            var hourlyName = $('<h2>Hourly weather</h2>').css('text-align', 'center');
+            var fiveDaysName = $('<h2>Next days</h2>').css('text-align', 'center');
+            
+            hourlyTable.before(hourlyName);
+            fiveDaysTable.before(fiveDaysName);
+   
         }
     }
     

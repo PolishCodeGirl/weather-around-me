@@ -243,16 +243,14 @@ section {
             width: 45vw;
             height: 95vh;
             display: block;
+            .cityName {
+                display: none;
+            }
             .tableWeather {
                 height: 70vh;
                 table{
                     height: 100%;
                 }
-            }
-        }
-        &.fiveDaysWeather {
-            .cityName {
-                display: block;
             }
         }
         
