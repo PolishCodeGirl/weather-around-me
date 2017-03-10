@@ -57,49 +57,48 @@ $(function() {
                 hourlyWeather.fadeOut(function(){
                     googleMap.fadeIn();
                     google.maps.event.trigger(map, 'resize');
+                    btnChange();
                 });
             }
             else if (fiveDaysWeather.is(':visible')) {
                 fiveDaysWeather.fadeOut(function(){
                     googleMap.fadeIn();
                     google.maps.event.trigger(map, 'resize');
+                    btnChange();
                 });
             }
         });
         
         // event for 'FORECAST' button
         forecastBnt.on('click', function(){
-            // change footer button depends on which view is on the screen
-            if ($(this).text() == "FORECAST") {
-                $(this).text("DAILY");
-            }
-            else {
-                $(this).text("FORECAST");
-            }
-                
             if (shortWeather.is(':visible')){
                 shortWeather.fadeOut(function(){
                     hourlyWeather.fadeIn();
+                    btnChange();
                 });
             }
             else if (longWeather.is(':visible')){
                 longWeather.fadeOut(function(){
                     hourlyWeather.fadeIn();
+                    btnChange();
                 });
             }
             else if (googleMap.is(':visible')){
                 googleMap.fadeOut(function(){
                     hourlyWeather.fadeIn();
+                    btnChange();
                 });
             }
             else if(hourlyWeather.is(':visible')){
                 hourlyWeather.fadeOut(function(){
                     shortWeather.fadeIn();
+                    btnChange();
                 });
             }
             else if (fiveDaysWeather.is(':visible')){
                 fiveDaysWeather.fadeOut(function(){
                     shortWeather.fadeIn();
+                    btnChange();
                 });
             }
         });
@@ -122,7 +121,18 @@ $(function() {
             }
         });
         
+// ---------------------------------------------------------------  
+        // function change button name from 'FORECAST' to 'DAILY' and 'DAILY' to 'FORECAST' depends on which view is on the screen 
+        function btnChange () {
+            if (forecastBnt.text() == "FORECAST") {
+                forecastBnt.text("DAILY");
+            }
+            else {
+                forecastBnt.text("FORECAST");
+            }
+        }
         
+// ---------------------------------------------------------------       
         // function shows main view on mobile depends on which view is on the screen 
         function showFirstView () {
             if (longWeather.is(':visible')) {
@@ -138,17 +148,19 @@ $(function() {
             else if (hourlyWeather.is(':visible')){
                 hourlyWeather.fadeOut(1000, function(){
                     shortWeather.fadeIn(1000);
+                    btnChange();
                 });
             }
             else if (fiveDaysWeather.is(':visible')){
                 fiveDaysWeather.fadeOut(1000, function(){
                     shortWeather.fadeIn(1000);
+                    btnChange();
                 });
             }
         }
     }
     
-    
+// --------------------------------------------------------------   
     //?????? POPRAWIC
     function showViewsOnTablet() {
         if (window.matchMedia("(min-width: 768px)").matches) {
