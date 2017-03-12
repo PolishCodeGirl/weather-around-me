@@ -168,14 +168,30 @@ $(function() {
         var hourlyTable = hourlyWeather.find('.tableWeather'),
             fiveDaysTable = fiveDaysWeather.find('.tableWeather');
         
+        // --------------------------
+        function showGoogleMap() {
+            googleMap.fadeIn();
+            var map = document.getElementById('map');
+            google.maps.event.trigger(map, 'resize');
+            mapBtn.attr('disabled', 'disabled');
+        }
+        // --------------------------
+        
         if (window.matchMedia("(min-width: 768px)").matches) {
             mapBtn.on('click', function(){
                 if (longWeather.is(':visible')) {
                     longWeather.fadeOut(function(){
-                        googleMap.fadeIn();
-                        var map = document.getElementById('map');
-                        google.maps.event.trigger(map, 'resize');
-                        mapBtn.attr('disabled', 'disabled');
+                        showGoogleMap();
+                    });
+                }
+                else if (hourlyWeather.is(':visible')) {
+                    hourlyWeather.fadeOut(function(){
+                        fiveDaysWeather.fadeOut();
+                        dailyWeather.fadeIn(function(){
+                            longWeather.fadeOut();
+                            shortWeather.fadeIn();
+                            showGoogleMap();
+                        });
                     });
                 }
             });
@@ -198,10 +214,11 @@ $(function() {
                 else if (hourlyWeather.is(':visible')) {
                     (hourlyWeather).fadeOut(function(){
                         fiveDaysWeather.fadeOut();
-                        dailyWeather.fadeIn();
+                        dailyWeather.fadeIn(function(){
+                            longWeather.fadeIn();
+                        });
                     });
                 }
-               
             });
             
             forecastBnt.on('click', function(){
@@ -211,13 +228,25 @@ $(function() {
                         hourlyWeather.fadeIn();
                         fiveDaysWeather.fadeIn();
                         googleMap.fadeOut();
+                        mapBtn.removeAttr('disabled');
                         console.log("I do not know why it does work");
                     });
                 }
-                // FIND OUT WHAT IT DOESN'T WORK
-                else if (forecastWeather.is(':visible')) {
-                    forecastWeather.fadeOut(function(){
+                // FIND OUT WHAT DOESN'T WORK
+//                else if (forecastWeather.is(':visible')) {
+//                    forecastWeather.fadeOut(function(){
+//                        dailyWeather.fadeIn();
+//                        console.log("I do not know why it does not work");
+//                    });
+//                }
+                else if (hourlyWeather.is(':visible')) {
+                    hourlyWeather.fadeOut(function(){
+                        fiveDaysWeather.fadeOut();
                         dailyWeather.fadeIn();
+                        googleMap.fadeOut(function(){
+                            longWeather.fadeIn();
+                            mapBtn.removeAttr('disabled');
+                        });
                         console.log("I do not know why it does not work");
                     });
                 }
