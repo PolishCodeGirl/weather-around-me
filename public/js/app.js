@@ -18,6 +18,18 @@ $(function() {
         dailyWeather = $('.weatherArticle'),
         forecastWeather = $('.forecastArticle');
     
+// ------------------------------------------------------------------- 
+    // function change button name from 'FORECAST' to 'DAILY' and 'DAILY' to 'FORECAST' depends on which view is on the screen 
+    function btnChange () {
+        if (forecastBnt.text() == "FORECAST") {
+            forecastBnt.text("DAILY");
+        }
+        else {
+            forecastBnt.text("FORECAST");
+        }
+    }
+        
+// --------------------------------------------------------------------
     
     function detailWeather() {
         
@@ -121,17 +133,7 @@ $(function() {
             }
         });
         
-// ---------------------------------------------------------------  
-        // function change button name from 'FORECAST' to 'DAILY' and 'DAILY' to 'FORECAST' depends on which view is on the screen 
-        function btnChange () {
-            if (forecastBnt.text() == "FORECAST") {
-                forecastBnt.text("DAILY");
-            }
-            else {
-                forecastBnt.text("FORECAST");
-            }
-        }
-        
+
 // ---------------------------------------------------------------       
         // function shows main view on mobile depends on which view is on the screen 
         function showFirstView () {
@@ -192,8 +194,10 @@ $(function() {
                         mapBtn.removeAttr('disabled');
                     });
                 }
+                // popracować nad bardziej płynnym przejściem 
                 else if (hourlyWeather.is(':visible')) {
-                    hourlyWeather.fadeOut(function(){
+                    (hourlyWeather).fadeOut(function(){
+                        fiveDaysWeather.fadeOut();
                         dailyWeather.fadeIn();
                     });
                 }
@@ -206,14 +210,10 @@ $(function() {
                     dailyWeather.fadeOut(function(){
                         hourlyWeather.fadeIn();
                         fiveDaysWeather.fadeIn();
+                        googleMap.fadeOut();
                         console.log("I do not know why it does work");
                     });
                 }
-                else if (googleMap.is(':visible')){
-                    googleMap.fadeOut(function(){
-                        forecastWeather.fadeIn();
-                    });
-                } 
                 // FIND OUT WHAT IT DOESN'T WORK
                 else if (forecastWeather.is(':visible')) {
                     forecastWeather.fadeOut(function(){
