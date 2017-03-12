@@ -163,6 +163,9 @@ $(function() {
 // --------------------------------------------------------------   
     //?????? POPRAWIC
     function showViewsOnTablet() {
+        var hourlyTable = hourlyWeather.find('.tableWeather'),
+            fiveDaysTable = fiveDaysWeather.find('.tableWeather');
+        
         if (window.matchMedia("(min-width: 768px)").matches) {
             mapBtn.on('click', function(){
                 if (longWeather.is(':visible')) {
@@ -219,6 +222,14 @@ $(function() {
                     });
                 }
             });
+            
+            
+            // show titles for each forecast 
+            var hourlyName = $('<h2>Hourly weather</h2>').css('text-align', 'center');
+            var fiveDaysName = $('<h2>Next days</h2>').css('text-align', 'center');
+            
+            hourlyTable.before(hourlyName);
+            fiveDaysTable.before(fiveDaysName);
         }
         
 //        tablet.addListener(function(event){
@@ -231,14 +242,16 @@ $(function() {
 //        });
     }
     
+// ---------------------------------------------------------------------
+    
     detailWeather();
     showViewsOnTablet();
+    
+//---------------------------------------------------------------------- 
     
     function showMapOnDesktop() {
         var weather = $('.weatherArticle');
         var map = $('.mapArticle');
-        var hourlyTable = hourlyWeather.find('.tableWeather'),
-            fiveDaysTable = fiveDaysWeather.find('.tableWeather');
         
         if (window.matchMedia("(min-width: 992px)").matches) {
             // put mainWeatherView & googleMaps next each other
@@ -248,12 +261,6 @@ $(function() {
             // put hourlyWeather & 5DaysWeather next each other 
             hourlyWeather.addClass('pull-left');
             fiveDaysWeather.addClass('pull-right');
-            
-            var hourlyName = $('<h2>Hourly weather</h2>').css('text-align', 'center');
-            var fiveDaysName = $('<h2>Next days</h2>').css('text-align', 'center');
-            
-            hourlyTable.before(hourlyName);
-            fiveDaysTable.before(fiveDaysName);
    
         }
     }
