@@ -39,7 +39,6 @@ $(function() {
                 longWeather.fadeIn();
             });
             //shortWeather.hide();
-            console.log("ja też działam :)");
         });
         
         // event for 'BACK' button
@@ -50,32 +49,32 @@ $(function() {
         
         // event for 'MAP' button 
         mapBtn.on('click', function(){
-            var map = document.getElementById('map');
+            
+            function showMap () {
+                googleMap.fadeIn();
+                var map = document.getElementById('map');
+                google.maps.event.trigger(map, 'resize');
+            }
             
             if(longWeather.is(':visible')){
                 longWeather.fadeOut(function(){
-                    googleMap.fadeIn();
-                    //var map = document.getElementById('map');
-                    google.maps.event.trigger(map, 'resize');
+                    showMap();
                 });
             }
             else if (shortWeather.is(':visible')){
                 shortWeather.fadeOut(function(){
-                    googleMap.fadeIn();
-                    google.maps.event.trigger(map, 'resize');
+                    showMap();
                 });
             }
             else if (hourlyWeather.is(':visible')) {
                 hourlyWeather.fadeOut(function(){
-                    googleMap.fadeIn();
-                    google.maps.event.trigger(map, 'resize');
+                    showMap();
                     btnChange();
                 });
             }
             else if (fiveDaysWeather.is(':visible')) {
                 fiveDaysWeather.fadeOut(function(){
-                    googleMap.fadeIn();
-                    google.maps.event.trigger(map, 'resize');
+                    showMap();
                     btnChange();
                 });
             }
