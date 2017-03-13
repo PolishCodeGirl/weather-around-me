@@ -230,17 +230,18 @@ footer {
             }
             .temperature {
                 margin-top: 10px;
-                font-size: 2em;
+                font-size: 2.5em;
             }
             .cityName {
                 margin-top: 10px;
-                font-size: 1.5em;
+                font-size: 3em;
             }
             button {
                 display: none;
             }
         }
         &.longWeather {
+            margin-top: 35px;
             height: 35vh;
             display: block;
             .cityName {
