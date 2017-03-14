@@ -63,12 +63,14 @@ section {
     }
     &.googleMap {
         display: none;
-    }
-    #map {
-        margin-top: 25px;
-        height: 60vh; // POPRAWIC na vh, żeby dopasowywało się do odbiornika
-        width: 100%;
-        //border: 1px solid green;
+        .cityName {
+            margin: 0;
+        }
+        #map {
+            //margin-top: 25px;
+            height: 60vh; // POPRAWIC na vh, żeby dopasowywało się do odbiornika
+            width: 100%;
+        }
     }
     &.hourlyWeather, &.fiveDaysWeather {
         display: none;
@@ -143,6 +145,9 @@ footer {
             }
         }
         &.googleMap {
+            .cityName {
+                display: none;
+            }
             #map {
                 height: 35vh;
             }
